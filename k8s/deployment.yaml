@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: company-website
+  namespace: company-website
+  labels:
+    app: company-website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: company-website
+  template:
+    metadata:
+      labels:
+        app: company-website
+    spec:
+      containers:
+      - name: website
+        image: ravindra806/company-website:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_ENV
+          value: "production"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5

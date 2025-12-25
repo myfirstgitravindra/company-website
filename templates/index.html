@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Company Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-building"></i> Welcome to Our Company</h1>
+        <p>We provide simple, effective DevOps solutions.</p>
+        
+        <div class="visitor-count">
+            <i class="fas fa-users"></i><br>
+            {{ visitor_count }}
+        </div>
+        <p>Visitors and counting...</p>
+        
+        <div class="features">
+            <h3><i class="fas fa-cloud"></i> Powered By:</h3>
+            <p>AWS EKS | Docker | Jenkins | Terraform</p>
+        </div>
+        
+        <div class="footer">
+            <p><i class="fas fa-code"></i> Simple DevOps Demo Project</p>
+            <p>Visitor count is stored in a persistent volume</p>
+        </div>
+    </div>
+</body>
+</html>
